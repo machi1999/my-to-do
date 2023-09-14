@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>ToDo List</h2>
+    <!-- submitで、ページがリロードされるのを防ぐ -->
+    <form v-on:submit.prevent>
+      <!-- データバインディング -->
+      <input type="text" v-model="newItem">
+      <!-- ボタンがクリックされたときに呼び出すメソッド名 addItem-->
+      <button v-on:click="addItem">Add</button>
+      <!-- <pre>{{$data}}</pre> -->
+    </form>
+    <ul>
+      <li v-for="(todo, index) in todos">
+        <input type="checkbox" v-model="todo.isDone">
+        <!-- オブジェクトtodoのプロパティitemを表示
+         動的にクラスをhtmlにバインドする-->
+        <span v-bind:class="{done: todo.isDone}">{{todo.item}}</span>
+        <button v-on:click="deleteItem(index)">Delete</button>
+      </li>
+    </ul>
+
+  </div>
+
+  <script src="https://unpkg.com/vue@3.1.5"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
